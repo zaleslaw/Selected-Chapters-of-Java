@@ -8,6 +8,32 @@
 
 Пример кода с github: TODO
 
+```
+    public static void main(String[] args) {
+        Logger log = LogManager.getRootLogger();
+        try {
+
+            for (int i = 0; i < 1_000; i++) {
+                Connection connection = getConnection();
+                Statement st = connection.createStatement();
+
+                st.execute("CREATE TABLE IF NOT EXISTS users (id INT NOT NULL AUTO_INCREMENT, name VARCHAR(30), PRIMARY KEY (id))");
+
+                st.execute("DROP TABLE users");
+                log.info("Connection # " + i + " was created");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private static Connection getConnection() throws SQLException {
+        return DriverManager.getConnection(URL, USER_NAME, PASSWORD);
+    }
+```
+
 Если вы просто запустите этот код и подождете, то по достижении лимита на количество соединений вы получите следующее сообщение:
 
 ![](/assets/ExceptionFromJDBCDriver.png)
@@ -21,8 +47,6 @@
 Так давайте же закроем за собой двери!
 
 Достаточно добавить connection.close\(\) в конце блока кода.
-
-
 
 ## А давайте дадим меньше памяти?
 
