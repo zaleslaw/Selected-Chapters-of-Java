@@ -1,3 +1,4 @@
-# My Awesome Book
+# Заметки к тренингам по Java
 
-This file file serves as your book's preface, a great place to describe your book's content and ideas.
+Пока тут мало чего полезного, но в течение года планирую сложить сюда множество забавных историй с тренингов по Java и из жизни.
+
